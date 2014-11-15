@@ -23,22 +23,6 @@ def index():
 						   user = user,
 						   posts = posts)
 
-def index():
-	user = {'nickname': 'Keith'}
-	posts = [
-		{
-			'author': {'nickname': 'John'},
-			'body': "Fuckoff!",
-		},
-		{
-			'author': {'nickname': 'Bill'},
-			'body': 'I like things!'
-		}
-	 ]
-	return render_template('index.html',
-						   title = 'Home',
-						   user = user,
-						   posts = posts)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -50,5 +34,6 @@ def login():
 		return redirect('/index')
 	return render_template('login.html',
 						   title='Sign In',
-						   form=form)
+						   form=form,
+						   providers=app.config['OPENID_PROVIDERS'])
 
